@@ -14,3 +14,132 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+
+.App{
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+/* top of page title */
+#top-of-page {
+  display: flex;
+  flex-direction: row;
+  border-top: 5px solid #013727;
+  border-bottom: 1px solid rgb(136, 136, 136);
+}
+
+#top-of-page #title{
+  display: flex;
+  flex-direction: column;
+  flex:1;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+}
+
+#top-of-page p{
+  font-size: 0.9rem;
+  color: rgb(136, 136, 136);
+}
+
+/* top of page hamberger button */
+#top-of-page #hamberger{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+
+}
+#top-of-page #hamberger-button{
+  outline: none;
+  border: none;
+  background-color: transparent;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.0em;
+}
+
+#top-of-page #hamberger-button:hover{
+  background-color: #013727;
+  color: white;
+}
+
+/* MAIN CONTENT */
+
+#main-content{
+  display: flex;
+  flex-direction: row;
+  flex:1;
+  width: 100%;
+  height: 100%;
+}
+
+/* LEFT SIDE BAR */
+#left-side{
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  /* height: 100%; */
+  height: 900px;
+  border-right: 1px solid rgb(136, 136, 136);
+}
+
+#left-side-header {
+  display: flex;
+  flex-direction: row;
+  padding: 15px;
+  border-bottom: 1px solid rgb(136, 136, 136);
+}
+
+#left-side-header h2 {
+  font-size: 1.9rem;
+  flex: 1;
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+#left-side-header button{
+  outline: none;
+  border: none;
+  background-color: transparent;
+  display: flex;
+  width: 20%;
+  height: 100%;
+  justify-content: center;
+  font-size: 2.1em;
+}
+
+#left-side-header button:hover{
+  background-color: #013727;
+  color: white;
+}
+
+/* make this important */
+#left-side.invisable{
+  display: none !important;
+}
+
+/* right side */
+#right-side{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  /* height: 100%; */
+  height: 900px;
+}
+#right-side h1{
+  font-size: 1.9rem;
+  color: rgb(136, 136, 136);
+}
