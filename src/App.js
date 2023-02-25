@@ -1,5 +1,6 @@
 // import React, { useState } from "react";
-
+import React from "react";
+import Edit from './Edit';
 function App() {
 
   window.onload = function() {
@@ -13,6 +14,16 @@ function App() {
   hamberger.addEventListener ("click", function() {
     console.log("clicked");
     leftSide.classList.toggle("invisable");
+  });
+
+  const addNoteButton = document.querySelector("#add-note-button");
+  addNoteButton.addEventListener ("click", function() {
+    console.log("clicked");
+    const newNote = document.createElement("Edit");
+    newNote.classList.add("note");
+    // make defulot invisable
+    const rightSideDefult = document.querySelector("#right-side-defult");
+    rightSideDefult.classList.add("invisable");
   });
 
   }
@@ -45,36 +56,14 @@ function App() {
         </div>
         {/* right side */}
         <div id="right-side">
-          {/* <h1>Select a note, or create a new one.</h1> */}
+          <div id="right-side-defult">
+            <h1>Select a note, or create a new one.</h1>
+          </div>
 
 {/* ADDING TEST HERE */}
-          {/* bar to put title in */}
-          <div id="note-header-box">
-            <div id="note-title-box">
-              <input id="note-title" type="text" placeholder="Untitled"></input>
-              <input id="note-date"type="datetime-local" />
-            </div>
 
-            <div id="note-header-buttons">
-              <button id="save">Save</button>
-              <button id="delete">Delete</button>
-            </div>
-          </div>
-
-          {/* making note tools */}
-          <div id="note-tools">
-            <select onchange="changeFontSize(this)">
-              <option value="1" id="size-normal">normal</option>
-              <option value="2" id="size-subheader">Subheader</option>
-              <option value="3" id="size-header">Header</option>
-            </select>
-            <button id="bold">B</button>
-            <button id="italic">I</button>
-            <button id="underline">U</button>
-            <button id="link">&#128279;</button>
-            <button id="bulleted-list">Bulleted List</button>
-            <button id="numbered-list">Numbered List</button>
-          </div>
+          {/* TEST 2 (WORKS!)*/}
+          <Edit id="edit"/>
 
 {/* ADDING TEST HERE */}
         </div>

@@ -133,11 +133,23 @@ a {
 #right-side{
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center;
+  align-items: center; */
   width: 100%;
   /* height: 100%; */
   height: 900px;
+}
+
+#right-side-defult{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  flex:1;
+}
+
+#right-side-defult.invisable{
+  display: none;
 }
 #right-side h1{
   font-size: 1.9rem;
@@ -145,6 +157,10 @@ a {
 }
 
 /* ADDING A NOTE WHEN YOU EDIT */
+#edit.invisable{
+  display:none !important;
+}
+
 #note-header-box {
   display: flex;
   flex-direction: row;
@@ -239,4 +255,18 @@ input:focus {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+#note-input-container textarea{
+  outline: none;
+  border: none;
+  background-color: transparent;
+  display: flex;
+  padding: 7px;
+  flex:1;
+  font-family: 'Roboto', sans-serif;
+}
+
+#note-input-container textarea::placeholder{
+  font-family: 'Roboto', sans-serif;
 }
