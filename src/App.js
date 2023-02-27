@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-// import React from "react";
 import Edit from './Edit';
+import NoteListPreview from './NoteListPreview';
+
 function App() {
-  // states
+  // list of notes
   const [component, setComponent] = useState([]);
-  const [nextKey, setNextKey] = useState(1);
+  console.log(component);
   // show edit component
   const [showEditComponent, setShowEditComponent] = useState(false);
 
@@ -16,6 +17,10 @@ function App() {
   }
 
 
+  // {} = {id: 0, title: "", date: "", contents: ""}
+  // setComponent([{id: 0, title: "", date: "", contents: ""}, ...component]);
+
+
   // add note button
   const addNoteButton = () => {
     console.log("clicked");
@@ -24,8 +29,6 @@ function App() {
     rightSideDefult.classList.add("invisable");
     // add new note
     setShowEditComponent(true);
-    // setComponent([...component, <Edit key={nextKey} />]);
-    // setNextKey(nextKey + 1);
   }
 
 
@@ -53,6 +56,17 @@ function App() {
           </div>
           <div id="notes-container">
             {/* add notes here. dont know how yet */}
+            {<NoteListPreview />}
+            {/* test */}
+            {
+              component.map((item) => {
+                return (
+                  <NoteListPreview title={item.title} date={item.date} contents={item.contents}/>
+                )
+              }
+              )
+            }
+            {/* test */}
           </div>
         </div>
         {/* right side */}
@@ -62,7 +76,7 @@ function App() {
           </div>
 
 {/* ADDING COMPONENT HERE */}
-          {showEditComponent && <Edit />}
+          {showEditComponent && <Edit onSave={(item) => {{/*console.log(item);*/} setComponent([...component, item]);}} />}
 {/* ADDING COMPONENT HERE */}
 
         </div>
