@@ -1,4 +1,7 @@
 import React, {useState} from "react";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+
 
 function Edit(props){
     // make a new state for the current note
@@ -107,7 +110,7 @@ function Edit(props){
             </div>
 
             {/* making note tools */}
-            <div id="note-tools">
+            {/* <div id="note-tools">
                 <select id="font-size" onChange={fontSize}>
                     <option value="1" id="size-normal">normal</option>
                     <option value="2" id="size-subheader">Subheader</option>
@@ -119,10 +122,10 @@ function Edit(props){
                 <button id="link" onClick={link}>&#128279;</button>
                 <button id="bulleted-list" onClick={bulletList}>Bulleted List</button>
                 <button id="numbered-list" onClick={numberList}>Numbered List</button>
-            </div>
+            </div> */}
             <div id="note-input-container">
-                <textarea id="note-contents" placeholder="Type here..." rows="4" cols="50" onChange={(e) => setCurrent((prev) => ({...prev, contents: e.target.value}))}></textarea>
-
+                {/* <textarea id="note-contents" placeholder="Type here..." rows="4" cols="50" onChange={(e) => setCurrent((prev) => ({...prev, contents: e.target.value}))}></textarea> */}
+                <ReactQuill id="note-contents" placeholder="Type here..." onChange={(e) => setCurrent((prev) => ({...prev, contents: e}))}/>
             </div>
         </>
 
