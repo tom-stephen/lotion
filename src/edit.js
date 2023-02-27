@@ -1,7 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 
-function Edit(){
-
+function Edit(props){
+    const {noteItem} = props;
+    console.log(noteItem);
+    const [current, setCurrent] = useState({id: 0, title: "", date: "", contents: ""});
 
     // const message = querySelector("#message");
     window.onload = function() {
@@ -10,19 +12,10 @@ function Edit(){
         const bold = document.querySelector("#bold");
         bold.addEventListener("click", function() {
             console.log("bold");
-            // get the selected text
             var selection = window.getSelection().toString();
-          
-            // create a new range to contain the selected text
             var range = window.getSelection().getRangeAt(0);
-          
-            // create a new <strong> element to wrap the selected text
             var strong = document.createElement("strong");
-          
-            // set the content of the <strong> element to the selected text
             strong.appendChild(document.createTextNode(selection));
-          
-            // replace the selected text with the <strong> element
             range.deleteContents();
             range.insertNode(strong);
         });
@@ -47,14 +40,14 @@ function Edit(){
             range.insertNode(strong);
         });
         }
-
+        console.log(current);
 
     return(
         <>
             {/* bar to put title in */}
             <div id="note-header-box">
                 <div id="note-title-box">
-                <input id="note-title" type="text" placeholder="Untitled"></input>
+                <input id="note-title" type="text" placeholder="Untitled" onChange={(e) => setCurrent((prev) => ({...prev, title: e.target.value}))}></input>
                 <input id="note-date"type="datetime-local" />
                 </div>
 

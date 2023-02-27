@@ -5,55 +5,36 @@ function App() {
   // states
   const [component, setComponent] = useState([]);
   const [nextKey, setNextKey] = useState(1);
-  window.onload = function() {
+  // show edit component
+  const [showEditComponent, setShowEditComponent] = useState(false);
 
-    // hamberger menue
-    const hamberger = document.querySelector("#hamberger-button");
+  // hamberger menue
+  const hamberger = () => {
+    console.log("clicked");
     const leftSide = document.querySelector("#left-side");
-    hamberger.addEventListener ("click", function() {
-      console.log("clicked");
-      leftSide.classList.toggle("invisable");
-    });
-
-    // add note button
-
-
-    const addNoteButton = document.querySelector("#add-note-button");
-    addNoteButton.addEventListener ("click", function() {
-      console.log("clicked");
-      // make defult invisable
-      const rightSideDefult = document.querySelector("#right-side-defult");
-      rightSideDefult.classList.add("invisable");
-      setComponent([...component, <Edit key={nextKey} />]);
-      setNextKey(nextKey + 1);
-    });
-
-
-
-    // const addNoteButton = document.querySelector("#add-note-button");
-    // addNoteButton.addEventListener ("click", function() {
-    //   console.log("clicked");
-    //   const newNote = document.createElement("<Edit/>");
-    //   // add the id "note" to the note
-    //   newNote.setAttribute("id", "note");
-
-    //   // add the new note to the notes container
-    //   const notesContainer = document.querySelector("#right-side");
-    //   notesContainer.appendChild(newNote);
-
-    //   // make defult invisable
-    //   const rightSideDefult = document.querySelector("#right-side-defult");
-    //   rightSideDefult.classList.add("invisable");
-    // });
-
+    leftSide.classList.toggle("invisable");
   }
+
+
+  // add note button
+  const addNoteButton = () => {
+    console.log("clicked");
+    // make defult invisable
+    const rightSideDefult = document.querySelector("#right-side-defult");
+    rightSideDefult.classList.add("invisable");
+    // add new note
+    setShowEditComponent(true);
+    // setComponent([...component, <Edit key={nextKey} />]);
+    // setNextKey(nextKey + 1);
+  }
+
 
   return (
     <div className="App">
       <div id="top-of-page">
         {/* hamberger menue */}
         <div id="hamberger">
-          <button id="hamberger-button">☰</button>
+          <button id="hamberger-button" onClick={hamberger}>☰</button>
         </div>
         {/* title */}
         <div id="title">
@@ -68,7 +49,7 @@ function App() {
         <div id="left-side">
           <div id="left-side-header">
             <h2>Notes</h2>
-            <button id="add-note-button">+</button>
+            <button id="add-note-button" onClick={addNoteButton}>+</button>
           </div>
           <div id="notes-container">
             {/* add notes here. dont know how yet */}
@@ -81,7 +62,7 @@ function App() {
           </div>
 
 {/* ADDING TEST HERE */}
-          {component}
+          {true && <Edit />}
           {/* TEST 2 (WORKS!)*/}
           {/* <Edit id="edit"/> */}
 {/* ADDING TEST HERE */}
