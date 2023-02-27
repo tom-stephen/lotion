@@ -61,11 +61,10 @@ function App() {
             <h1>Select a note, or create a new one.</h1>
           </div>
 
-{/* ADDING TEST HERE */}
-          {true && <Edit />}
-          {/* TEST 2 (WORKS!)*/}
-          {/* <Edit id="edit"/> */}
-{/* ADDING TEST HERE */}
+{/* ADDING COMPONENT HERE */}
+          {showEditComponent && <Edit />}
+{/* ADDING COMPONENT HERE */}
+
         </div>
       </div>
     </div>
