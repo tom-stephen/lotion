@@ -1,30 +1,50 @@
-// import React, { useState } from "react";
-import React from "react";
+import React, { useState } from "react";
+// import React from "react";
 import Edit from './Edit';
 function App() {
-
+  // states
+  const [component, setComponent] = useState([]);
+  const [nextKey, setNextKey] = useState(1);
   window.onload = function() {
-  // const plussNote = document.getElementById("add-page-button");
-  // plussNote.addEventListener ("click", () => {
-  //   // add a new note
-  // });
 
-  const hamberger = document.querySelector("#hamberger-button");
-  const leftSide = document.querySelector("#left-side");
-  hamberger.addEventListener ("click", function() {
-    console.log("clicked");
-    leftSide.classList.toggle("invisable");
-  });
+    // hamberger menue
+    const hamberger = document.querySelector("#hamberger-button");
+    const leftSide = document.querySelector("#left-side");
+    hamberger.addEventListener ("click", function() {
+      console.log("clicked");
+      leftSide.classList.toggle("invisable");
+    });
 
-  const addNoteButton = document.querySelector("#add-note-button");
-  addNoteButton.addEventListener ("click", function() {
-    console.log("clicked");
-    const newNote = document.createElement("Edit");
-    newNote.classList.add("note");
-    // make defulot invisable
-    const rightSideDefult = document.querySelector("#right-side-defult");
-    rightSideDefult.classList.add("invisable");
-  });
+    // add note button
+
+
+    const addNoteButton = document.querySelector("#add-note-button");
+    addNoteButton.addEventListener ("click", function() {
+      console.log("clicked");
+      // make defult invisable
+      const rightSideDefult = document.querySelector("#right-side-defult");
+      rightSideDefult.classList.add("invisable");
+      setComponent([...component, <Edit key={nextKey} />]);
+      setNextKey(nextKey + 1);
+    });
+
+
+
+    // const addNoteButton = document.querySelector("#add-note-button");
+    // addNoteButton.addEventListener ("click", function() {
+    //   console.log("clicked");
+    //   const newNote = document.createElement("<Edit/>");
+    //   // add the id "note" to the note
+    //   newNote.setAttribute("id", "note");
+
+    //   // add the new note to the notes container
+    //   const notesContainer = document.querySelector("#right-side");
+    //   notesContainer.appendChild(newNote);
+
+    //   // make defult invisable
+    //   const rightSideDefult = document.querySelector("#right-side-defult");
+    //   rightSideDefult.classList.add("invisable");
+    // });
 
   }
 
@@ -61,10 +81,9 @@ function App() {
           </div>
 
 {/* ADDING TEST HERE */}
-
+          {component}
           {/* TEST 2 (WORKS!)*/}
-          <Edit id="edit"/>
-
+          {/* <Edit id="edit"/> */}
 {/* ADDING TEST HERE */}
         </div>
       </div>
