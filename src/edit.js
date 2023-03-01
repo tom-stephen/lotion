@@ -6,11 +6,16 @@ import "react-quill/dist/quill.snow.css";
 function Edit(props){
     const {onSave} = props;
     // make a new state for the current note
-    const [current, setCurrent] = useState({id: 0, title: "", date: "", contents: ""});
+    const {id} = props;
+    const {title} = props;
+    const {date} = props;
+    const {contents} = props;
+    const [current, setCurrent] = useState({id: id, title: title, date: date, contents: contents});
 
     const saveNote = () => {
-        onSave(current);
         console.log("save");
+        // append the note to the list of notes 
+        onSave(current);
     }
 
     const deleteNote = () => {

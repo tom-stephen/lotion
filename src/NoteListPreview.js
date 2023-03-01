@@ -1,16 +1,13 @@
 import React from "react";
 
-function NoteListPreview() {
-    
+function NoteListPreview({title, date, contents}){
 
     return (
         <div id="note-prev-box">
-            {/* <h3>{title}</h3>
+            <h3>{title}</h3>
             <p>{date}</p>
-            <p>{contents}</p> */}
-            <h3>title</h3>
-            <p>date</p>
-            <p>contents</p>
+            <div dangerouslySetInnerHTML={{__html: contents}}></div>
+
         </div>
     );
     }

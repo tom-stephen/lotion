@@ -1,13 +1,32 @@
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Edit from './Edit';
 import NoteListPreview from './NoteListPreview';
 
 function App() {
   // list of notes
-  const [component, setComponent] = useState([]);
-  console.log(component);
+  const [note, setNote] = useState([]);
+  // every time note changes, save it to local storage
+  
+
+  useEffect(() => {
+    // retrieve array from local storage on component mount
+    const storedArray = localStorage.getItem('note');
+    if (storedArray) {
+      setNote(JSON.parse(storedArray));
+    }
+  }, []);
+
+  useEffect(() => {
+    // save array to local storage on component update
+    localStorage.setItem("note", JSON.stringify(note));
+  }, [note]);
+
+  console.log(note);
   // show edit component
   const [showEditComponent, setShowEditComponent] = useState(false);
+
+  const navigate = useNavigate();
 
   // hamberger menue
   const hamberger = () => {
@@ -16,9 +35,15 @@ function App() {
     leftSide.classList.toggle("invisable");
   }
 
+  // find index of item based of ID
+  const findIndex = (item) => {
+    return note.findIndex((i) => i.id === item.id);
+  }
 
-  // {} = {id: 0, title: "", date: "", contents: ""}
-  // setComponent([{id: 0, title: "", date: "", contents: ""}, ...component]);
+  // generate ID
+  const generateID = () => {
+    return Math.floor(Math.random() * 1000000000);
+  }
 
 
   // add note button
@@ -29,6 +54,7 @@ function App() {
     rightSideDefult.classList.add("invisable");
     // add new note
     setShowEditComponent(true);
+    navigate(`/notes/1/edit`)
   }
 
 
@@ -59,12 +85,11 @@ function App() {
             {<NoteListPreview />}
             {/* test */}
             {
-              component.map((item) => {
+              note.map((item) => {
                 return (
-                  <NoteListPreview title={item.title} date={item.date} contents={item.contents}/>
+                  <NoteListPreview id={item.id} title={item.title} date={item.date} contents={item.contents}/>
                 )
-              }
-              )
+              })
             }
             {/* test */}
           </div>
@@ -76,8 +101,40 @@ function App() {
           </div>
 
 {/* ADDING COMPONENT HERE */}
-          {showEditComponent && <Edit onSave={(item) => {{/*console.log(item);*/} setComponent([...component, item]);}} />}
+          {showEditComponent && <Edit id={generateID()}
+                                      title="Untitled" 
+                                      date='0000-00-00' 
+                                      contents='Add text here...' 
+                                      onSave={(item) => {
+                                        if (findIndex(item) === -1)
+                                          setNote([...note, item]);
+                                        else {
+                                          const replaceList = [...note];
+                                          const index = findIndex(item);
+                                          replaceList[index] = item;
+                                          setNote(replaceList);
+                                        }
+                                      }
+                                      }
+                                      onDelete={(item) => {
+                                        const updateList = [...note]; 
+                                        const index = findIndex(item); 
+                                        updateList.splice(index ,1);
+                                        setNote(updateList);
+                                      }}/>}
+          {/* {showEditComponent_add && <Edit id={generateID()} 
+                                          id = 
+                                          title= 
+                                          date=  
+                                          contents=  
+                                          onSave={(item) => {setNote([...note, item]);}} 
+                                          onDelete={(item) => {const updateList = [...note];
+                                            const index = findIndex(item); 
+                                            updateList.splice(index ,1);
+                                            setNote(updateList);
+                                          }}/>} */}
 {/* ADDING COMPONENT HERE */}
+                                                                                                  
 
         </div>
       </div>
