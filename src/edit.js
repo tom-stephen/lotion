@@ -1,16 +1,21 @@
 import React, {useState} from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { useOutletContext, useParams } from "react-router-dom";
 
-
-function Edit(props){
-    const {onSave} = props;
+function Edit(){
+    // console.log("Edit was rendered");
+    const {id} = useParams();
+    const [note, onSave] = useOutletContext();
+    console.log(note);
+    // TODO: check to see if id exists in notes list.
     // make a new state for the current note
-    const {id} = props;
-    const {title} = props;
-    const {date} = props;
-    const {contents} = props;
-    const [current, setCurrent] = useState({id: id, title: title, date: date, contents: contents});
+    if (!id) {
+        console.log("no id");
+    } else {
+        console.log("id: " + id);
+    }
+    const [current, setCurrent] = useState({id: id, title: 'title', date: 'date', contents: 'contents'});
 
     const saveNote = () => {
         console.log("save");

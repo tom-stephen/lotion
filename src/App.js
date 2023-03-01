@@ -2,6 +2,7 @@ import React, { useState , useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Edit from './Edit';
 import NoteListPreview from './NoteListPreview';
+import { Outlet } from "react-router-dom";
 
 function App() {
   // list of notes
@@ -45,8 +46,20 @@ function App() {
     return Math.floor(Math.random() * 1000000000);
   }
 
+  const onSave =(item) => {
+    if (findIndex(item) === -1)
+      setNote([...note, item]);
+    else {
+      const replaceList = [...note];
+      const index = findIndex(item);
+      replaceList[index] = item;
+      setNote(replaceList);
+    }
+  }
+
 
   // add note button
+  var id;
   const addNoteButton = () => {
     console.log("clicked");
     // make defult invisable
@@ -54,12 +67,14 @@ function App() {
     rightSideDefult.classList.add("invisable");
     // add new note
     setShowEditComponent(true);
-    navigate(`/notes/1/edit`)
+    id = generateID();
+    navigate(`/notes/${id}/edit`)
   }
 
 
   return (
     <div className="App">
+
       <div id="top-of-page">
         {/* hamberger menue */}
         <div id="hamberger">
@@ -99,9 +114,10 @@ function App() {
           <div id="right-side-defult">
             <h1>Select a note, or create a new one.</h1>
           </div>
+          <Outlet  context={[note, onSave]}/>
 
 {/* ADDING COMPONENT HERE */}
-          {showEditComponent && <Edit id={generateID()}
+          {/* {showEditComponent && <Edit id={id}
                                       title="Untitled" 
                                       date='0000-00-00' 
                                       contents='Add text here...' 
@@ -121,7 +137,7 @@ function App() {
                                         const index = findIndex(item); 
                                         updateList.splice(index ,1);
                                         setNote(updateList);
-                                      }}/>}
+                                      }}/>} */}
           {/* {showEditComponent_add && <Edit id={generateID()} 
                                           id = 
                                           title= 
