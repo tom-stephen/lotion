@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useOutletContext, useParams } from "react-router-dom";
@@ -6,6 +6,7 @@ import { useOutletContext, useParams } from "react-router-dom";
 function Edit(){
     // console.log("Edit was rendered");
     const {id} = useParams();
+    let currentNote = {}
     const [note, onSave] = useOutletContext();
     console.log(note);
     // TODO: check to see if id exists in notes list.
@@ -14,8 +15,10 @@ function Edit(){
         console.log("no id");
     } else {
         console.log("id: " + id);
+        [currentNote] = note.filter((item) => item.id == id);
+        console.log(currentNote)
     }
-    const [current, setCurrent] = useState({id: id, title: 'title', date: 'date', contents: 'contents'});
+    const [current, setCurrent] = useState({id: null, title: 'title', date: 'date', contents: 'contents'});
 
     const saveNote = () => {
         console.log("save");
@@ -25,13 +28,24 @@ function Edit(){
 
     const deleteNote = () => {
         console.log("delete");
+        // remove the note from the list of notes
+        onSave(note.filter((item) => item.id !== id));
     }
 
-    // console.log(current);
+    useEffect(()=> {
+        console.log("current note:", currentNote);
+        setCurrent(currentNote)
+    }, [id])
 
     return(
         <>
             {/* bar to put title in */}
+            {current && current.id ? (
+            <div>
+                <p>{current.title}</p>
+                <p>{current.contents}</p>
+            </div>
+            ) : null }
             <div id="note-header-box">
                 <div id="note-title-box">
                 <input id="note-title" type="text" placeholder="Untitled" onChange={(e) => setCurrent((prev) => ({...prev, title: e.target.value}))}></input>

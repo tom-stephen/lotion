@@ -115,43 +115,6 @@ function App() {
             <h1>Select a note, or create a new one.</h1>
           </div>
           <Outlet  context={[note, onSave]}/>
-
-{/* ADDING COMPONENT HERE */}
-          {/* {showEditComponent && <Edit id={id}
-                                      title="Untitled" 
-                                      date='0000-00-00' 
-                                      contents='Add text here...' 
-                                      onSave={(item) => {
-                                        if (findIndex(item) === -1)
-                                          setNote([...note, item]);
-                                        else {
-                                          const replaceList = [...note];
-                                          const index = findIndex(item);
-                                          replaceList[index] = item;
-                                          setNote(replaceList);
-                                        }
-                                      }
-                                      }
-                                      onDelete={(item) => {
-                                        const updateList = [...note]; 
-                                        const index = findIndex(item); 
-                                        updateList.splice(index ,1);
-                                        setNote(updateList);
-                                      }}/>} */}
-          {/* {showEditComponent_add && <Edit id={generateID()} 
-                                          id = 
-                                          title= 
-                                          date=  
-                                          contents=  
-                                          onSave={(item) => {setNote([...note, item]);}} 
-                                          onDelete={(item) => {const updateList = [...note];
-                                            const index = findIndex(item); 
-                                            updateList.splice(index ,1);
-                                            setNote(updateList);
-                                          }}/>} */}
-{/* ADDING COMPONENT HERE */}
-                                                                                                  
-
         </div>
       </div>
     </div>
