@@ -68,6 +68,7 @@ function App() {
     // add new note
     setShowEditComponent(true);
     id = generateID();
+    setNote([{id: id, title: '', date: '', contents: ''}, ...note])
     navigate(`/notes/${id}/edit`)
   }
 
