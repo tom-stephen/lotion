@@ -7,8 +7,6 @@ import { Outlet } from "react-router-dom";
 function App() {
   // list of notes
   const [note, setNote] = useState([]);
-  // every time note changes, save it to local storage
-  
 
   useEffect(() => {
     // retrieve array from local storage on component mount
@@ -54,6 +52,11 @@ function App() {
       const index = findIndex(item);
       replaceList[index] = item;
       setNote(replaceList);
+      // testing this
+      // const edit_box_title = document.querySelector("#note-header-box");
+      // const edit_box_contents = document.querySelector("#note-input-container");
+      // edit_box_contents.classList.toggle("invisable");
+      // edit_box_title.classList.toggle("invisable");
     }
   }
 
