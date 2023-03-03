@@ -52,11 +52,7 @@ function App() {
       const index = findIndex(item);
       replaceList[index] = item;
       setNote(replaceList);
-      // testing this
-      // const edit_box_title = document.querySelector("#note-header-box");
-      // const edit_box_contents = document.querySelector("#note-input-container");
-      // edit_box_contents.classList.toggle("invisable");
-      // edit_box_title.classList.toggle("invisable");
+      navigate(`/notes/${item.id}`);
     }
   }
 
@@ -109,7 +105,7 @@ function App() {
           </div>
           <div id="notes-container">
             {/* add notes here. dont know how yet */}
-            {<NoteListPreview />}
+            {/* {<NoteListPreview />} */}
             {/* test */}
             {
               note.map((item) => {
