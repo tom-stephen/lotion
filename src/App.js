@@ -57,6 +57,14 @@ function App() {
     }
   }
 
+  const onDelete = (item) => {
+    const replaceList = [...note];
+    const index = findIndex(item);
+    replaceList.splice(index, 1);
+    setNote(replaceList);
+  }
+
+
 
   // add note button
   var id;
@@ -115,7 +123,7 @@ function App() {
           <div id="right-side-defult">
             <h1>Select a note, or create a new one.</h1>
           </div>
-          <Outlet  context={[note, onSave]}/>
+          <Outlet  context={[note, onSave, onDelete]}/>
         </div>
       </div>
     </div>

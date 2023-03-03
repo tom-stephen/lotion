@@ -7,7 +7,7 @@ function Edit(){
     // console.log("Edit was rendered");
     const {id} = useParams();
     let currentNote = {}
-    const [note, onSave] = useOutletContext();
+    const [note, onSave, onDelete] = useOutletContext();
     console.log(note);
     // TODO: check to see if id exists in notes list.
     // make a new state for the current note
@@ -29,7 +29,7 @@ function Edit(){
     const deleteNote = () => {
         console.log("delete");
         // remove the note from the list of notes
-        onSave(note.filter((item) => item.id !== id));
+        onDelete(current);
     }
 
     useEffect(()=> {
@@ -42,8 +42,10 @@ function Edit(){
             {/* bar to put title in */}
             {current && current.id ? (
             <div>
-                <p>{current.title}</p>
-                <p>{current.contents}</p>
+                <h2>{current.title}</h2>
+                <p>{current.date}</p>
+                <div dangerouslySetInnerHTML={{__html: current.contents}}></div>
+                {/* <p>{current.contents}</p> */}
             </div>
             ) : null }
             <div id="note-header-box">

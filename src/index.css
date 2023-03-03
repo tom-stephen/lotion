@@ -270,3 +270,18 @@ input:focus {
 #note-input-container textarea::placeholder{
   font-family: 'Roboto', sans-serif;
 }
+
+#note-prev-box:hover{
+  /* make them green when yu hove over them */
+  background-color: #013727;
+  color: white;
+}
+
+#note-prev-box{
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: left;
+  padding: 7px;
+  border-bottom: 1px solid rgb(136, 136, 136);
+}
