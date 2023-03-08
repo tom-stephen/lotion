@@ -66,21 +66,21 @@ function Edit({ editMode }) {
   return (
     <>
       {/* bar to put title in */}
-      {current && current.id ? (
+      {current && current.id && !editMode ? (
         <div id="view-box">
           <div id="view-header">
             <h2 id="view-title">{current.title}</h2>
             <p id="view-date">{current.date}</p>
             <div id="note-header-buttons">
-              {editMode ? (
+              {/* {editMode ? (
                 <button id="save" onClick={saveNote}>
                   Save
-                </button>
-              ) : (
-                <NavLink id="edit" to={`/notes/${current.id}/edit`}>
-                  Edit
-                </NavLink>
-              )}
+                </button> */}
+              {/* ) : ( */}
+              <NavLink id="edit" to={`/notes/${current.id}/edit`}>
+                Edit
+              </NavLink>
+              {/* )} */}
 
               <button id="delete" onClick={deleteNote}>
                 Delete
@@ -95,39 +95,48 @@ function Edit({ editMode }) {
         </div>
       ) : null}
 
-      <div id="note-header-box">
-        <div id="note-title-box">
-          <input
-            id="note-title"
-            type="text"
-            placeholder="Untitled"
-            value={current ? current.title : ""}
-            onChange={(e) =>
-              setCurrent((prev) => ({ ...prev, title: e.target.value }))
-            }
-          ></input>
-          <input
-            id="note-date"
-            type="datetime-local"
-            onChange={(e) =>
-              setCurrent((prev) => ({
-                ...prev,
-                date: formatDate(e.target.value),
-              }))
-            }
-          />
-        </div>
-      </div>
-      <div id="note-input-container">
-        {/* <ReactQuill id="note-contents" placeholder="Type here..." onChange={(e) => setCurrent((prev) => ({...prev, contents: e}))}/> */}
-        <ReactQuill
-          id="note-contents"
-          placeholder="Type here..."
-          value={current ? current.contents : ""}
-          onChange={(e) => setCurrent((prev) => ({ ...prev, contents: e }))}
-        />
-      </div>
-
+      {editMode && (
+        <>
+          <div id="note-header-box">
+            <div id="note-title-box">
+              <input
+                id="note-title"
+                type="text"
+                placeholder="Untitled"
+                value={current ? current.title : ""}
+                onChange={(e) =>
+                  setCurrent((prev) => ({ ...prev, title: e.target.value }))
+                }
+              ></input>
+              <input
+                id="note-date"
+                type="datetime-local"
+                onChange={(e) =>
+                  setCurrent((prev) => ({
+                    ...prev,
+                    date: formatDate(e.target.value),
+                  }))
+                }
+              />
+            </div>
+            <button id="save" onClick={saveNote}>
+              Save
+            </button>
+            <button id="delete" onClick={deleteNote}>
+              Delete
+            </button>
+          </div>
+          <div id="note-input-container">
+            {/* <ReactQuill id="note-contents" placeholder="Type here..." onChange={(e) => setCurrent((prev) => ({...prev, contents: e}))}/> */}
+            <ReactQuill
+              id="note-contents"
+              placeholder="Type here..."
+              value={current ? current.contents : ""}
+              onChange={(e) => setCurrent((prev) => ({ ...prev, contents: e }))}
+            />
+          </div>
+        </>
+      )}
     </>
   );
 }
