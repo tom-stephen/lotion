@@ -17,7 +17,7 @@ root.render(
       <Route element={<App />}>
         <Route path="/" element={<></>}></Route>
         <Route path="/notes" element={<></>}></Route>
-        <Route path="/notes/:id/edit" element={<Edit editMode={true} />}></Route>
+        <Route path="/notes/:id/Edit" element={<Edit editMode={true} />}></Route>
         <Route path="/notes/:id" element={<Edit editMode={false} />}></Route>
       </Route>
     </Routes>
