@@ -1,6 +1,6 @@
 import React, { useState , useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Edit from './Edit';
+import Edit from './edit';
 import NoteListPreview from './NoteListPreview';
 import { Outlet } from "react-router-dom";
 
