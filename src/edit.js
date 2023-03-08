@@ -5,13 +5,10 @@ import { useOutletContext, useParams } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 
 function Edit({ editMode }) {
-  // console.log("Edit was rendered");
   const { id } = useParams();
   let currentNote = {};
   const [note, onSave, onDelete] = useOutletContext();
   console.log(note);
-  // TODO: check to see if id exists in notes list.
-  // make a new state for the current note
   if (!id) {
     console.log("no id");
   } else {
@@ -90,6 +87,7 @@ function Edit({ editMode }) {
               </button>
             </div>
           </div>
+          {/* display preview or edit */}
           <div
             id="view-content"
             dangerouslySetInnerHTML={{ __html: current.contents }}
@@ -120,8 +118,6 @@ function Edit({ editMode }) {
           />
         </div>
       </div>
-
-      {/* making note tools */}
       <div id="note-input-container">
         {/* <ReactQuill id="note-contents" placeholder="Type here..." onChange={(e) => setCurrent((prev) => ({...prev, contents: e}))}/> */}
         <ReactQuill
@@ -131,6 +127,7 @@ function Edit({ editMode }) {
           onChange={(e) => setCurrent((prev) => ({ ...prev, contents: e }))}
         />
       </div>
+
     </>
   );
 }
