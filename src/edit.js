@@ -69,8 +69,10 @@ function Edit({ editMode }) {
       {current && current.id && !editMode ? (
         <div id="view-box">
           <div id="view-header">
-            <h2 id="view-title">{current.title}</h2>
-            <p id="view-date">{current.date}</p>
+            <div>
+              <h2 id="view-title">{current.title ? current.title : "Untitled"}</h2>
+              <p id="view-date">{current.date ? current.date : "no date"}</p>
+            </div>
             <div id="note-header-buttons">
               {/* {editMode ? (
                 <button id="save" onClick={saveNote}>
@@ -119,12 +121,14 @@ function Edit({ editMode }) {
                 }
               />
             </div>
-            <button id="save" onClick={saveNote}>
-              Save
-            </button>
-            <button id="delete" onClick={deleteNote}>
-              Delete
-            </button>
+            <div id="save_del_but">
+              <button id="save" onClick={saveNote}>
+                Save
+              </button>
+              <button id="delete" onClick={deleteNote}>
+                Delete
+              </button>
+            </div>
           </div>
           <div id="note-input-container">
             {/* <ReactQuill id="note-contents" placeholder="Type here..." onChange={(e) => setCurrent((prev) => ({...prev, contents: e}))}/> */}
